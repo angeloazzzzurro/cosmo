@@ -1,0 +1,11 @@
+torch>=2.0
+numpy
+pandas
+matplotlib
+cartopy
+plotly
+lightkurve
+astropy
+scikit-learn
+requests
+tqdm
