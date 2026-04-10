@@ -236,17 +236,53 @@ def build_map(hyg: pd.DataFrame) -> go.Figure:
         row=1, col=1,
     )
 
-    # ── Pannello destra: curva di luce ────────────────────────────────────────
-    t_demo, flux_demo = demo_lightcurve(n_planets=1)
+    # ── Pannello destra: curva di luce leggibile ─────────────────────────────
+    t_demo, flux_pct, t_center, t_hw = demo_lightcurve(n_planets=1)
+
+    # Linea tratteggiata: luminosità normale (0%)
     fig.add_trace(
         go.Scatter(
-            x=t_demo, y=flux_demo,
+            x=[t_demo[0], t_demo[-1]], y=[0, 0],
             mode="lines",
-            name="Curva di luce",
-            line=dict(color="#FFD700", width=1),
+            name="_baseline",
             showlegend=False,
+            line=dict(color="#ffffff", width=1, dash="dot"),
+            hoverinfo="skip",
         ),
         row=1, col=2,
+    )
+
+    # Zona del transito — prima, durante, dopo con colori diversi
+    t_start = t_center - t_hw
+    t_end   = t_center + t_hw
+    mask_before = t_demo <= t_start
+    mask_during = (t_demo >= t_start) & (t_demo <= t_end)
+    mask_after  = t_demo >= t_end
+
+    for mask, color, name in [
+        (mask_before, "#88aaff", "Stella brillante"),
+        (mask_during, "#FF8C00", "Pianeta passa!"),
+        (mask_after,  "#88aaff", "_after"),
+    ]:
+        fig.add_trace(
+            go.Scatter(
+                x=t_demo[mask], y=flux_pct[mask],
+                mode="lines",
+                name=name,
+                showlegend=(name not in ("_after",)),
+                line=dict(color=color, width=2.5),
+            ),
+            row=1, col=2,
+        )
+
+    # Area ombreggiata sotto il transito (xref/yref espliciti per subplot misto 3D+2D)
+    fig.add_shape(
+        type="rect",
+        x0=t_start, x1=t_end,
+        y0=-10, y1=1,
+        xref="x", yref="y",
+        fillcolor="rgba(255,140,0,0.12)",
+        line_width=0,
     )
 
     # ── Layout globale ────────────────────────────────────────────────────────
@@ -288,14 +324,54 @@ def build_map(hyg: pd.DataFrame) -> go.Figure:
 
     # ── Curva di luce: assi ───────────────────────────────────────────────────
     fig.update_xaxes(
-        title_text="Fase orbitale",
+        title_text="Tempo (orbita del pianeta)",
         gridcolor="#1a1a3a",
+        tickformat=".0%",
         row=1, col=2,
     )
     fig.update_yaxes(
-        title_text="Flusso normalizzato",
+        title_text="Luminosità (%)",
         gridcolor="#1a1a3a",
+        ticksuffix="%",
         row=1, col=2,
+    )
+
+    # ── Annotazioni didattiche sulla curva ───────────────────────────────────
+    fig.add_annotation(
+        x=t_center - t_hw * 2.2, y=flux_pct.max() * 0.6,
+        xref="x", yref="y",
+        text="☀️<br><b>Stella<br>brillante</b>",
+        showarrow=False,
+        font=dict(size=10, color="#88aaff"),
+        align="center",
+    )
+    fig.add_annotation(
+        x=t_center, y=flux_pct.min() * 1.15,
+        xref="x", yref="y",
+        text="🪐<br><b>Pianeta<br>passa!</b>",
+        showarrow=True,
+        arrowhead=2,
+        arrowcolor="#FF8C00",
+        arrowsize=1.2,
+        ax=0, ay=-36,
+        font=dict(size=10, color="#FF8C00"),
+        align="center",
+    )
+    fig.add_annotation(
+        x=t_center + t_hw * 2.2, y=flux_pct.max() * 0.6,
+        xref="x", yref="y",
+        text="☀️<br><b>Torna<br>normale</b>",
+        showarrow=False,
+        font=dict(size=10, color="#88aaff"),
+        align="center",
+    )
+    fig.add_annotation(
+        x=0.5, y=1.13,
+        xref="x domain", yref="y domain",
+        text="<b>Come scopriamo un pianeta</b>",
+        showarrow=False,
+        font=dict(size=12, color="#FFD700"),
+        align="center",
     )
 
     # ── Legenda pianeti (annotazione) ─────────────────────────────────────────
