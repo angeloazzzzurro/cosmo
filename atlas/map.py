@@ -24,6 +24,7 @@ import numpy as np
 import pandas as pd
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
+from scipy.spatial import KDTree
 
 ROOT = Path(__file__).parent.parent
 DATA_DIR = ROOT / "data"
@@ -79,23 +80,38 @@ def crossmatch_hyg_koi(hyg: pd.DataFrame, koi: pd.DataFrame,
         print("  [warn] Coordinate KOI mancanti — uso stelle di esempio")
         return hyg
 
-    # Vettorizzato: per ogni KOI trovo la stella HYG più vicina
-    koi_ra  = koi["ra_deg"].values
-    koi_dec = koi["dec"].values
+    # Converti RA/Dec in coordinate cartesiane 3D sulla sfera unitaria per
+    # una distanza angolare corretta (evita distorsione cos(dec) a RA/Dec piatti)
+    def to_xyz(ra_deg, dec_deg):
+        ra  = np.radians(ra_deg)
+        dec = np.radians(dec_deg)
+        return np.column_stack([
+            np.cos(dec) * np.cos(ra),
+            np.cos(dec) * np.sin(ra),
+            np.sin(dec),
+        ])
 
-    for i, (kra, kdec) in enumerate(zip(koi_ra, koi_dec)):
-        dist = np.sqrt((hyg["ra_deg"].values - kra) ** 2 +
-                       (hyg["dec"].values   - kdec) ** 2)
-        best = dist.argmin()
-        if dist[best] < radius_deg:
-            hyg.at[best, "n_planets"] += 1
-            hyg.at[best, "has_planet"] = True
-            score_col = "koi_score" if "koi_score" in koi.columns else None
-            if score_col:
-                hyg.at[best, "koi_score"] = max(
-                    hyg.at[best, "koi_score"],
-                    float(koi.iloc[i][score_col] or 0)
-                )
+    hyg_xyz = to_xyz(hyg["ra_deg"].values, hyg["dec"].values)
+    koi_xyz = to_xyz(koi["ra_deg"].values, koi["dec"].values)
+
+    # KDTree su coordinate 3D — query O(N log N) invece di O(N*M)
+    tree = KDTree(hyg_xyz)
+    chord_radius = 2 * np.sin(np.radians(radius_deg) / 2)  # raggio angolare → corda
+    distances, indices = tree.query(koi_xyz, k=1, distance_upper_bound=chord_radius)
+
+    score_col = "koi_score" if "koi_score" in koi.columns else None
+    n_hyg = len(hyg)
+
+    for i, (dist, best) in enumerate(zip(distances, indices)):
+        if best == n_hyg:   # nessun vicino entro il raggio
+            continue
+        hyg.at[best, "n_planets"] += 1
+        hyg.at[best, "has_planet"] = True
+        if score_col:
+            hyg.at[best, "koi_score"] = max(
+                hyg.at[best, "koi_score"],
+                float(koi.iloc[i][score_col] or 0)
+            )
 
     n_matched = hyg["has_planet"].sum()
     print(f"  {n_matched} stelle con pianeti trovate nel catalogo HYG")

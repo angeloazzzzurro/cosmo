@@ -201,8 +201,12 @@ def train(epochs: int = 30, batch_size: int = 64, lr: float = 1e-3,
     n_val = int(0.15 * len(dataset))
     train_ds, val_ds = random_split(dataset, [len(dataset) - n_val, n_val])
 
-    train_loader = DataLoader(train_ds, batch_size=batch_size, shuffle=True,  num_workers=2)
-    val_loader   = DataLoader(val_ds,   batch_size=batch_size, shuffle=False, num_workers=2)
+    # num_workers=0 su Windows: multiprocessing di DataLoader causa freeze/deadlock
+    # fuori da "if __name__ == '__main__'" su win32
+    import platform
+    nw = 0 if platform.system() == "Windows" else 2
+    train_loader = DataLoader(train_ds, batch_size=batch_size, shuffle=True,  num_workers=nw)
+    val_loader   = DataLoader(val_ds,   batch_size=batch_size, shuffle=False, num_workers=nw)
 
     model = AstroNet().to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=lr)
