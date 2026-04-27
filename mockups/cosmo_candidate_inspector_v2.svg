@@ -1,0 +1,159 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 980" width="1600" height="980">
+  <defs>
+    <linearGradient id="bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#02050d"/>
+      <stop offset="48%" stop-color="#081224"/>
+      <stop offset="100%" stop-color="#03060d"/>
+    </linearGradient>
+    <radialGradient id="cloud2" cx="70%" cy="28%" r="44%">
+      <stop offset="0%" stop-color="#1b3560" stop-opacity="0.58"/>
+      <stop offset="100%" stop-color="#1b3560" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="frame2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0d1629"/>
+      <stop offset="100%" stop-color="#091120"/>
+    </linearGradient>
+    <linearGradient id="teal2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#3b8cff"/>
+      <stop offset="100%" stop-color="#7affdf"/>
+    </linearGradient>
+    <linearGradient id="orange2" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff9f43"/>
+      <stop offset="100%" stop-color="#ffe08a"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="980" fill="url(#bg2)"/>
+  <rect width="1600" height="980" fill="url(#cloud2)"/>
+
+  <rect x="24" y="22" width="1552" height="72" rx="24" fill="#08111f" stroke="#162740" stroke-width="1.4"/>
+  <text x="56" y="64" font-family="monospace" font-size="28" fill="#eef5ff" font-weight="700">COSMO</text>
+  <text x="180" y="64" font-family="monospace" font-size="14" fill="#7d97c1">candidate inspector / focused analysis state</text>
+
+  <g font-family="monospace" font-size="12">
+    <rect x="706" y="40" width="104" height="34" rx="17" fill="#11203a" stroke="#22456f"/>
+    <text x="732" y="62" fill="#9eb7dc">detect</text>
+    <rect x="826" y="40" width="124" height="34" rx="17" fill="#11203a" stroke="#22456f"/>
+    <text x="852" y="62" fill="#9eb7dc">cross-match</text>
+    <rect x="966" y="40" width="108" height="34" rx="17" fill="#17365d" stroke="#59a7ff"/>
+    <text x="992" y="62" fill="#f3f8ff">inspect</text>
+    <rect x="1090" y="40" width="102" height="34" rx="17" fill="#11203a" stroke="#22456f"/>
+    <text x="1116" y="62" fill="#9eb7dc">export</text>
+  </g>
+
+  <rect x="26" y="118" width="248" height="834" rx="28" fill="url(#frame2)" stroke="#17304d"/>
+  <text x="54" y="160" font-family="monospace" font-size="14" fill="#5f7cac">QUEUE / ACTIVE SESSION</text>
+  <text x="54" y="194" font-family="monospace" font-size="28" fill="#eef5ff" font-weight="700">Focus Stack</text>
+
+  <g font-family="monospace">
+    <rect x="46" y="226" width="208" height="96" rx="18" fill="#132947" stroke="#59a7ff"/>
+    <text x="64" y="256" font-family="monospace" font-size="12" fill="#7ad0ff">ACTIVE TARGET</text>
+    <text x="64" y="290" font-family="monospace" font-size="24" fill="#f8fbff" font-weight="700">Kepler-442</text>
+    <text x="64" y="310" font-family="monospace" font-size="13" fill="#cfe0ff">confidence 94.7% / K5V / 1 known planet</text>
+
+    <rect x="46" y="338" width="208" height="68" rx="16" fill="#0c1729" stroke="#1d365a"/>
+    <text x="64" y="366" font-family="monospace" font-size="13" fill="#e7f0ff">KOI-7923</text>
+    <text x="64" y="388" font-family="monospace" font-size="11" fill="#7d96bb">score 81.2% / needs follow-up</text>
+
+    <rect x="46" y="418" width="208" height="68" rx="16" fill="#0c1729" stroke="#1d365a"/>
+    <text x="64" y="446" font-family="monospace" font-size="13" fill="#e7f0ff">HD 219134</text>
+    <text x="64" y="468" font-family="monospace" font-size="11" fill="#7d96bb">multi-planet system / benchmark host</text>
+
+    <rect x="46" y="512" width="208" height="178" rx="20" fill="#0c1729" stroke="#1d365a"/>
+    <text x="64" y="544" font-family="monospace" font-size="12" fill="#5f7cac">MODEL TRACE</text>
+    <text x="64" y="580" font-family="monospace" font-size="13" fill="#dbe7ff">global stream peak around transit center</text>
+    <text x="64" y="612" font-family="monospace" font-size="13" fill="#dbe7ff">local stream confirms dip symmetry</text>
+    <text x="64" y="644" font-family="monospace" font-size="13" fill="#dbe7ff">candidate promoted into inspection queue</text>
+  </g>
+
+  <rect x="302" y="118" width="728" height="834" rx="30" fill="#06101c" stroke="#17304d"/>
+  <rect x="332" y="152" width="668" height="766" rx="26" fill="#050c17" stroke="#11253d"/>
+  <text x="366" y="194" font-family="monospace" font-size="14" fill="#75c7ff">3D CELESTIAL SCENE / TARGET LOCKED</text>
+
+  <g opacity="0.46">
+    <circle cx="430" cy="230" r="1.4" fill="#dbe8ff"/>
+    <circle cx="520" cy="274" r="1.1" fill="#76beff"/>
+    <circle cx="648" cy="232" r="1.6" fill="#ffdfa0"/>
+    <circle cx="786" cy="266" r="1.3" fill="#c8dcff"/>
+    <circle cx="896" cy="218" r="1.5" fill="#7bc8ff"/>
+    <circle cx="960" cy="284" r="1.2" fill="#dce8ff"/>
+    <circle cx="436" cy="722" r="1.4" fill="#9fd3ff"/>
+    <circle cx="810" cy="760" r="1.3" fill="#ffdb98"/>
+    <circle cx="954" cy="694" r="1.1" fill="#7ccfff"/>
+  </g>
+
+  <g transform="translate(358 214)">
+    <circle cx="304" cy="250" r="246" fill="none" stroke="#14345b" stroke-width="1.4"/>
+    <ellipse cx="304" cy="250" rx="248" ry="102" fill="none" stroke="#183c67" stroke-width="1.2"/>
+    <ellipse cx="304" cy="250" rx="144" ry="246" fill="none" stroke="#112b4f" stroke-width="1"/>
+    <ellipse cx="304" cy="250" rx="268" ry="52" fill="none" stroke="#16345a" stroke-width="1" stroke-dasharray="5 8"/>
+    <circle cx="304" cy="250" r="242" fill="none" stroke="#254c80" stroke-width="1.5"/>
+
+    <g opacity="0.95">
+      <circle cx="388" cy="172" r="8" fill="#7affdf"/>
+      <circle cx="388" cy="172" r="24" fill="none" stroke="#7affdf" stroke-opacity="0.45"/>
+      <circle cx="442" cy="208" r="11" fill="#ffcf6f"/>
+      <circle cx="442" cy="208" r="32" fill="none" stroke="#ffcf6f" stroke-opacity="0.4"/>
+      <circle cx="286" cy="198" r="7" fill="#68c4ff"/>
+      <circle cx="286" cy="198" r="20" fill="none" stroke="#68c4ff" stroke-opacity="0.36"/>
+    </g>
+
+    <path d="M 176 264 C 230 236 260 210 286 198" fill="none" stroke="#68c4ff" stroke-width="2"/>
+    <path d="M 286 198 C 322 180 354 172 388 172" fill="none" stroke="#7affdf" stroke-width="2"/>
+    <path d="M 388 172 C 408 178 426 190 442 208" fill="none" stroke="#ffcf6f" stroke-width="2.2"/>
+
+    <rect x="404" y="52" width="176" height="98" rx="18" fill="#0c1729" stroke="#1c3d66"/>
+    <text x="424" y="80" font-family="monospace" font-size="12" fill="#7affdf">camera lock</text>
+    <text x="424" y="106" font-family="monospace" font-size="12" fill="#e7f0ff">target centered</text>
+    <text x="424" y="128" font-family="monospace" font-size="12" fill="#e7f0ff">candidate ring pulsing</text>
+  </g>
+
+  <rect x="1052" y="118" width="522" height="834" rx="30" fill="url(#frame2)" stroke="#17304d"/>
+  <text x="1086" y="162" font-family="monospace" font-size="14" fill="#5f7cac">DOSSIER / SCIENTIST VIEW</text>
+  <text x="1086" y="196" font-family="monospace" font-size="32" fill="#eef5ff" font-weight="700">Kepler-442 System</text>
+
+  <rect x="1082" y="230" width="462" height="150" rx="22" fill="#0c1729" stroke="#1b3559"/>
+  <text x="1110" y="264" font-family="monospace" font-size="12" fill="#5f7cac">MODEL CONFIDENCE</text>
+  <rect x="1110" y="286" width="388" height="18" rx="9" fill="#101a2d"/>
+  <rect x="1110" y="286" width="368" height="18" rx="9" fill="url(#teal2)"/>
+  <text x="1502" y="301" font-family="monospace" font-size="12" fill="#7affdf">94.7%</text>
+  <text x="1110" y="334" font-family="monospace" font-size="14" fill="#dbe7ff">global view preserves clean baseline outside transit</text>
+  <text x="1110" y="360" font-family="monospace" font-size="14" fill="#dbe7ff">local view confirms compact, symmetric transit bowl</text>
+
+  <rect x="1082" y="398" width="462" height="248" rx="22" fill="#0c1729" stroke="#1b3559"/>
+  <text x="1110" y="432" font-family="monospace" font-size="12" fill="#5f7cac">TRANSIT SHAPE</text>
+  <line x1="1110" y1="592" x2="1498" y2="592" stroke="#1b3556"/>
+  <line x1="1110" y1="474" x2="1110" y2="592" stroke="#1b3556"/>
+  <line x1="1110" y1="532" x2="1498" y2="532" stroke="#17304b" stroke-dasharray="4 6"/>
+  <polyline points="1112,510 1148,510 1184,509 1208,504 1230,478 1248,538 1264,582 1282,594 1302,576 1320,538 1336,484 1352,500 1376,508 1402,510 1438,510 1470,510"
+    fill="none" stroke="url(#orange2)" stroke-width="3"/>
+  <line x1="1252" y1="476" x2="1252" y2="592" stroke="#ffd166" stroke-dasharray="4 5"/>
+  <text x="1110" y="620" font-family="monospace" font-size="12" fill="#dbe7ff">ingress 0.47 phase</text>
+  <text x="1262" y="620" font-family="monospace" font-size="12" fill="#dbe7ff">center 0.50</text>
+  <text x="1380" y="620" font-family="monospace" font-size="12" fill="#dbe7ff">egress 0.53</text>
+
+  <rect x="1082" y="664" width="222" height="216" rx="22" fill="#0c1729" stroke="#1b3559"/>
+  <text x="1110" y="698" font-family="monospace" font-size="12" fill="#5f7cac">SYSTEM FACTS</text>
+  <text x="1110" y="736" font-family="monospace" font-size="13" fill="#eef5ff">stellar type: K5V</text>
+  <text x="1110" y="766" font-family="monospace" font-size="13" fill="#eef5ff">period: 112.3 d</text>
+  <text x="1110" y="796" font-family="monospace" font-size="13" fill="#eef5ff">radius: 1.34 Re</text>
+  <text x="1110" y="826" font-family="monospace" font-size="13" fill="#7affdf">habitable zone: likely</text>
+
+  <rect x="1322" y="664" width="222" height="216" rx="22" fill="#0c1729" stroke="#1b3559"/>
+  <text x="1350" y="698" font-family="monospace" font-size="12" fill="#5f7cac">NEXT ACTION</text>
+  <text x="1350" y="736" font-family="monospace" font-size="13" fill="#eef5ff">archive HTML snapshot</text>
+  <text x="1350" y="766" font-family="monospace" font-size="13" fill="#eef5ff">compare against KOI score drift</text>
+  <text x="1350" y="796" font-family="monospace" font-size="13" fill="#eef5ff">promote candidate notes to README</text>
+  <rect x="1350" y="826" width="156" height="30" rx="15" fill="#14335a" stroke="#59a7ff"/>
+  <text x="1380" y="846" font-family="monospace" font-size="12" fill="#eef5ff">export report</text>
+
+  <rect x="332" y="824" width="668" height="94" rx="22" fill="#0c1729" stroke="#1b3559"/>
+  <text x="360" y="856" font-family="monospace" font-size="12" fill="#5f7cac">DUAL STREAM GLIMPSE</text>
+  <rect x="360" y="872" width="160" height="20" rx="10" fill="#101a2d"/>
+  <rect x="360" y="872" width="122" height="20" rx="10" fill="#3f7cff"/>
+  <text x="372" y="886" font-family="monospace" font-size="11" fill="#eef5ff">global window 2001 pt</text>
+  <rect x="548" y="872" width="160" height="20" rx="10" fill="#101a2d"/>
+  <rect x="548" y="872" width="92" height="20" rx="10" fill="#ffb15f"/>
+  <text x="560" y="886" font-family="monospace" font-size="11" fill="#eef5ff">local window 201 pt</text>
+  <text x="746" y="886" font-family="monospace" font-size="11" fill="#7d97c1">both streams agree on a narrow, stable transit signature</text>
+</svg>
